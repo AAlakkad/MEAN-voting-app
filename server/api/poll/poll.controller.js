@@ -22,10 +22,13 @@ exports.show = function(req, res) {
 
 // Creates a new poll in the DB.
 exports.create = function(req, res) {
-  Poll.create(req.body, function(err, poll) {
-    if(err) { return handleError(res, err); }
-    return res.status(201).json(poll);
-  });
+    // remove the date item from the request, we'll insert now by default.
+    delete req.body.date;
+    var poll = new Poll(req.body);
+    poll.save(function(err, poll) {
+        if (err) { return handleError(res, err); }
+        return res.status(201).json(poll);
+    });
 };
 
 // Updates an existing poll in the DB.
