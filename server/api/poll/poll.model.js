@@ -11,8 +11,9 @@ var PollSchema = new Schema({
   date: {type: Date, default: Date.now},
   options: [
     {
+      _id: Schema.Types.ObjectId,
       name: {type: String, required: true},
-      votes: [ {voter_id: Schema.Types.ObjectId}],
+      voters: [Schema.Types.ObjectId],
     }
   ]
 });

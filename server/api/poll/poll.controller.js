@@ -57,6 +57,21 @@ exports.destroy = function(req, res) {
   });
 };
 
+exports.vote = function(req, res) {
+    Poll.findById(req.params.id, function(err, poll) {
+        if(err) { return handleError(res, err); }
+        if(!poll) { return res.status(404).send('Not Found'); }
+        // @TODO check if the vote_id exists in the poll
+
+        console.log(poll.options.findById(req.params.vote_id));
+
+        // @TODO remove the user_id from other options in the same poll if exists
+
+        // @TODO add the user_id to the selected option's voters array
+
+    });
+};
+
 function handleError(res, err) {
   return res.status(500).send(err);
 }

@@ -12,4 +12,7 @@ router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
 
+// cast a vote
+router.post('/:id/:vote_id', controller.vote);
+
 module.exports = router;
