@@ -69,6 +69,9 @@ exports.vote = function(req, res) {
             return res.status(404).send('Option Not Found');
         }
 
+        // get the current logged-in user
+        var user = req.user;
+
         // @TODO remove the user_id from other options in the same poll if exists
 
         // @TODO add the user_id to the selected option's voters array
