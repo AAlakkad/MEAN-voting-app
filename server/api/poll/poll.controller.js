@@ -73,8 +73,13 @@ exports.vote = function(req, res) {
         var user = req.user;
 
         // @TODO remove the user_id from other options in the same poll if exists
+        // foreach poll.options as option
+        //     if option.users contain user._id
+        //         update option by removing the user._id from users list
 
         // @TODO add the user_id to the selected option's voters array
+        // vote.users.push(user._id);
+        // update poll.options.poll's users
 
     });
 };
