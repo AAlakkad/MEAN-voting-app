@@ -61,9 +61,13 @@ exports.vote = function(req, res) {
     Poll.findById(req.params.id, function(err, poll) {
         if(err) { return handleError(res, err); }
         if(!poll) { return res.status(404).send('Not Found'); }
-        // @TODO check if the vote_id exists in the poll
+        var vote_id = req.params.vote_id;
+        // check if the vote_id exists in the poll
+        var vote = poll.options.id(vote_id);
 
-        console.log(poll.options.findById(req.params.vote_id));
+        if(vote === null) {
+            return res.status(404).send('Option Not Found');
+        }
 
         // @TODO remove the user_id from other options in the same poll if exists
 
